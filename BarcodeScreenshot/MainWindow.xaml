@@ -12,36 +12,43 @@
         LastChildFill="True"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
-        
+
         <StackPanel
             Orientation="Horizontal"
             Height="Auto"
-            DockPanel.Dock="Bottom">
-           
+            DockPanel.Dock="Bottom"
+            Background="Ivory">
+
             <ComboBox Name="BarcodeTypeComboBox"
                       SelectedIndex="0"
                       Width="90"
                       Margin="5">
                 <ComboBoxItem>QR | ITF</ComboBoxItem>
-                <ComboBoxItem>QR</ComboBoxItem>
-                <ComboBoxItem>ITF</ComboBoxItem>
-                <ComboBoxItem>DataMatrix</ComboBoxItem>
                 <ComboBoxItem>1D</ComboBoxItem>
                 <ComboBoxItem>2D</ComboBoxItem>
+                <ComboBoxItem>DataMatrix</ComboBoxItem>
+                <ComboBoxItem>QR</ComboBoxItem>
+                <ComboBoxItem>ITF</ComboBoxItem>
                 <ComboBoxItem>Alle</ComboBoxItem>
             </ComboBox>
+            <TextBox Name="LabelBarcodeType"
+                     IsReadOnly="True"
+                     Width="100"
+                     Padding="3"
+                     Margin="5">Typ...</TextBox>
             <TextBox 
                 Name="LabelBarcodeContent"
                 IsReadOnly="True"
                 Width="500"
+                Padding="3"
                 Margin="5">Barcodedaten...</TextBox>
         </StackPanel>
 
-    <Image
-        MouseDown="ImageViewScreenshot_OnMouseDown"
-        Stretch="Fill"
-        RenderOptions.BitmapScalingMode="Fant"
-        Name="ImageViewScreenshot"/>
+        <Image
+            MouseDown="ImageViewScreenshot_OnMouseDown"
+            Stretch="Fill"
+            RenderOptions.BitmapScalingMode="Fant"
+            Name="ImageViewScreenshot"/>
 
-  </DockPanel>
+    </DockPanel>
 </Window>
