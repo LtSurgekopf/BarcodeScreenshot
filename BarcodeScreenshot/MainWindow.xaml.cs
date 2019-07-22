@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,8 @@ using System.Windows.Shapes;
 using AForge.Imaging.Filters;
 using ZXing;
 using ZXing.Common;
+using static BarcodeScreenshot.App;
+using Application = System.Windows.Application;
 using Color = System.Drawing.Color;
 using Image = System.Drawing.Image;
 using Path = System.IO.Path;
@@ -203,6 +206,7 @@ namespace BarcodeScreenshot
           possibleFormats.Add(BarcodeFormat.QR_CODE);
           possibleFormats.Add(BarcodeFormat.PDF_417);
           possibleFormats.Add(BarcodeFormat.AZTEC);
+          possibleFormats.Add(BarcodeFormat.CODE_128);
           break;
         case "Alle":
           possibleFormats.Add(BarcodeFormat.All_1D);
@@ -210,6 +214,7 @@ namespace BarcodeScreenshot
           possibleFormats.Add(BarcodeFormat.QR_CODE);
           possibleFormats.Add(BarcodeFormat.PDF_417);
           possibleFormats.Add(BarcodeFormat.AZTEC);
+          possibleFormats.Add(BarcodeFormat.CODE_128);
           break;
       }
 
@@ -239,12 +244,16 @@ namespace BarcodeScreenshot
 
     private void ButtonNewScreenShot_OnClick(object sender, RoutedEventArgs e)
     {
-      App.Current.MainWindow.WindowState = WindowState.Minimized;
+      if (Application.Current.MainWindow != null) Application.Current.MainWindow.WindowState = WindowState.Minimized;
+      _cropSelector.HideSelection();
+      //Thread.Sleep(50);
       ImageViewScreenshot.Source = null;
       DoScreenShot();
       var adorner = new RubberbandAdorner(ImageViewScreenshot) { Window = this };
       DrawScreenShot(adorner);
+      //Thread.Sleep(50);
       this.Activate();
+      this.Focus();
     }
   }
 }

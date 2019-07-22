@@ -3,24 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:BarcodeScreenshot.Properties"
         xmlns:local="clr-namespace:BarcodeScreenshot"
         mc:Ignorable="d"
         Loaded="MainWindow_OnLoaded"
         Background="Ivory"
-        Title="MainWindow" Height="450" Width="900">
+        Title="{x:Static p:Resources.Title}" Height="450" Width="900">
     <DockPanel
         LastChildFill="True"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
 
-        <StackPanel
-            Orientation="Horizontal"
+        <ToolBar
+            Padding="3"
             Height="Auto"
             DockPanel.Dock="Bottom">
 
             <ComboBox Name="BarcodeTypeComboBox"
                       SelectedIndex="0"
-                      Width="90"
+                      Width="100"
+                      Padding="1"
                       Margin="5">
                 <ComboBoxItem>QR | ITF</ComboBoxItem>
                 <ComboBoxItem>1D</ComboBoxItem>
@@ -28,29 +30,32 @@
                 <ComboBoxItem>DataMatrix</ComboBoxItem>
                 <ComboBoxItem>QR</ComboBoxItem>
                 <ComboBoxItem>ITF</ComboBoxItem>
-                <ComboBoxItem>Alle</ComboBoxItem>
+                <ComboBoxItem Content="{x:Static p:Resources.All}"/>
             </ComboBox>
             <TextBox Name="LabelBarcodeType"
                      IsReadOnly="True"
                      Width="100"
                      Padding="3"
-                     Margin="5">Typ...</TextBox>
+                     Margin="5"
+                     Text="{x:Static p:Resources.Type}"/>
             <TextBox 
                 Name="LabelBarcodeContent"
                 IsReadOnly="True"
                 Width="500"
                 Padding="3"
-                Margin="5">Barcodedaten...</TextBox>
+                Margin="5"
+                Text="{x:Static p:Resources.Content}"/>
 
             <Button Name="ButtonNewScreenShot"
                     Margin="5"
-                    Padding="3" Click="ButtonNewScreenShot_OnClick">Neuer Screenshot</Button>
-        </StackPanel>
+                    Padding="3" Click="ButtonNewScreenShot_OnClick"
+                    Content="{x:Static p:Resources.NewScreen}"/>
+        </ToolBar>
 
         <Image
-        MouseDown="ImageViewScreenshot_OnMouseDown"
-        Stretch="Fill"
-        RenderOptions.BitmapScalingMode="Fant"
-        Name="ImageViewScreenshot"/>
+            MouseDown="ImageViewScreenshot_OnMouseDown"
+            Stretch="Fill"
+            RenderOptions.BitmapScalingMode="Fant"
+            Name="ImageViewScreenshot"/>
     </DockPanel>
 </Window>

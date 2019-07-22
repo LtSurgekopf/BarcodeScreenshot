@@ -79,6 +79,11 @@ namespace BarcodeScreenshot
       ReleaseMouseCapture();
     }
 
+    public void HideSelection(bool hide = true)
+    {
+      Rubberband.Visibility = hide ? Visibility.Hidden : Visibility.Visible;
+    }
+
     protected override Visual GetVisualChild(int index) => Rubberband;
   }
 
